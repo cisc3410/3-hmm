@@ -1,0 +1,16 @@
+rain norain
+umbrella nobrella
+
+# PRIOR
+0.5 0.5
+
+# OBSERVATION
+0.9 0.2
+0.1 0.8
+
+# TRANSITION
+0.7 0.3
+0.3 0.7
+
+# OBSERVATIONS
+umbrella umbrella nobrella umbrella umbrella

@@ -1,0 +1,17 @@
+Area1 Area2 Area3
+hot cold
+
+# PRIOR
+0.333 0.333 0.333
+
+# OBSERVATION
+1 0 1
+0 1 0
+
+# TRANSITION
+0.25 0.75 0.00
+0.00 0.25 0.75
+0.00 0.00 1.00
+
+# OBSERVATIONS
+hot cold hot
