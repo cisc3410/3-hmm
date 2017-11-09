@@ -89,6 +89,27 @@ void operator*=(HMM::Distribution& lhs, const HMM::Distribution& rhs) {
 	}
 }
 
+void operator+=(HMM::Distribution& lhs, const HMM::Distribution& rhs) {
+	for (const auto item : rhs) {
+		lhs[item.first] += item.second;
+	}
+}
+
+HMM::Distribution operator+(const HMM::Distribution& lhs, const HMM::Distribution& rhs) {
+	HMM::Distribution d;
+	for (const auto item : lhs) {
+		d[item.first] = item.second + rhs.find(item.first)->second;
+	}
+	return d;
+}
+
+HMM::Distribution operator*(const HMM::Distribution& lhs, const HMM::Distribution& rhs) {
+	HMM::Distribution d;
+	for (const auto item : lhs) {
+		d[item.first] = item.second * rhs.find(item.first)->second;
+	}
+}
+
 // TODO: Filtering: Given a list of T observations, return the 
 // posterior probability distribution over the most recent state
 // (Given the observations, what is the probability the
