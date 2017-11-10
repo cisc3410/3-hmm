@@ -76,9 +76,7 @@ int main(int argc, const char** argv) {
 	HMM::Observations observed;
 	HMM hmm = loadHMMFromFile(fname, observed);
 
-	std::cout << observed << std::endl;
-
-	std::cout << hmm.filter(observed);
+	std::cout << hmm.filter(observed.begin(), observed.end()) << std::endl;
 
 	std::vector<std::string> mls = hmm.viterbi(observed.begin(), observed.end());
 	std::cout << mls << std::endl;
