@@ -14,7 +14,6 @@ sunny: sunny sunny sunny sunny rainy sunny sunny
 
 
 
-hot cold hot 
 Area1: 0.00
 Area2: 0.00
 Area3: 1.00
