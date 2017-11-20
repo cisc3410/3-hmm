@@ -12,7 +12,7 @@ foggy: foggy rainy foggy foggy rainy foggy foggy
 rainy: rainy rainy foggy rainy rainy foggy rainy
 sunny: sunny sunny sunny sunny rainy sunny sunny
 
-
+rainy foggy rainy rainy sunny sunny sunny
 
 Area1: 0.00
 Area2: 0.00
