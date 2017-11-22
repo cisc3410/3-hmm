@@ -147,16 +147,53 @@ HMM::Distribution operator*(const HMM::Distribution& lhs, const HMM::Distributio
 	return d;
 }
 
-// TODO: Filtering: Given a list of T observations, return the 
+// TODO: Filtering: Given a list of T observations, return the
 // posterior probability distribution over the most recent state
 // (Given the observations, what is the probability the
 // most recent state has each of the possible values)
 // (In this case, sunny, rainy, or foggy)
 HMM::Distribution HMM::filter(Observations::iterator begin, Observations::iterator end) {
+    std::vector<std::string> first;
+    for (int i = begin; i < end; i++){
+        first.push_back(pprobs[i] + oprobs[i]states[0])
+    }
+    StringStringFloatMap.push_back(first);
+    for (int j = begin; j < states.size(); j++)){
+        std::vector<std::string> next;
+        for (int i = begin; i < end; i++){
+            for (const auto item : logProb){
+                logProb = next[j-1][i] + tprobs[i][j];
+            }
+            next.push_back(logProb + oprobs[i]states[j])
+        }
+        StringStringFloatMap.push_back(next);
+    }
+    return StringStringFloatMap;
 }
 
 
 // TODO: Viterbi: Given a list of T observations, return the most
 // likely sequence of states (e.g. { "sunny", "rainy", "foggy" ... }
 std::vector<std::string> HMM::viterbi(Observations::iterator begin, Observations::iterator end) {
+    HMM::Distribution d;
+    for (int i = begin+1; i < end; i++){
+        std::vector<std::string> temp;
+        for (int next = begin; next < end; next++){
+            std::vector<std::string> after;
+            for (int prev = begin; prev < end; prev++){
+                std::vector<std::string> before = StringStringFloatMap[prev];
+                before.uniformDistribution += oprobs[next][StringStringFloatMap] + tprobs[prev][next];
+                if(before.uniformDistribution > after.uniformDistribution){
+                    after.uniformDistribution = before.uniformDistribution;
+                }
+            }
+            temp[next] = after;
+        }
+        StringStringFloatMap = temp;
+        d[i] = StringStringFloatMap;
+    }
+    for (int i = begin; i < end; i++){
+		viterbi.push_back(d[i]);
+	}
+	return viterbi;
 }
