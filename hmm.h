@@ -21,7 +21,6 @@ class HMM {
 	HMM(const Distribution&, const std::map<std::string, Distribution>&, const std::map<std::string, Distribution>&);
 
 	Distribution filter(Observations::iterator, Observations::iterator);
-	Distribution predict(Observations::iterator, Observations::iterator);
 	std::vector<std::string> viterbi(Observations::iterator, Observations::iterator);
 
 	private:
